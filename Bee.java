@@ -8,20 +8,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bee extends Actor
 {
+    GreenfootSound beeSound = new GreenfootSound("Single Bee Buzzing.mp3");
+    GreenfootImage[] idle = new GreenfootImage[3];
+    
     /**
-     * Act - do whatever the Bee wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor
      */
+    public Bee()
+    {
+        for(int i = 0; i< idle.length; i++)
+        {
+            idle[i] = new GreenfootImage("images/bee_idle/idle" + 1 + ".png");  
+        }
+       setImage(idle[0]); 
+    }
     public void act()
     {
         // Add your action code here.
         if(Greenfoot.isKeyDown("left"))
         {
-            move(-1);
+            move(-2);
         }
         else if(Greenfoot.isKeyDown("right"))
         {
-            move(1);
+            move(2);
         }
         // Remove apple if bee eats it
         eat();
@@ -38,7 +48,7 @@ public class Bee extends Actor
             MyWorld world =(MyWorld) getWorld();
             world.createApple();
             world.increaseScore();
-            
+            beeSound.play();
         }
 
        
